@@ -1,0 +1,12 @@
+{
+    "name": "thierrymarianne/known-user-agent",
+    "description": "Adding user agent header to known web service calls.",
+    "type": "known-plugin",
+    "version": "1.0.0",
+    "require": {
+        "composer/installers": "~2.0"
+    },
+    "extra": {
+        "installer-name": "WebServiceUserAgentHeader"
+    }
+}
