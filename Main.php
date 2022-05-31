@@ -9,7 +9,7 @@ namespace IdnoPlugins\WebServiceUserAgentHeader
         {
             \Idno\Core\Idno::site()->events()->addListener(
                 'webservice:headers',
-                function (array $eventData) {
+                function ($eventData) {
                     $userAgentHeader = [
                         implode([
                             'User-Agent: Mozilla/5.0 (X11; Linux x86_64)',
@@ -18,8 +18,15 @@ namespace IdnoPlugins\WebServiceUserAgentHeader
                         ])
                     ];
 
+                    $headers = [];
+                    $data = $eventData->data();
+
+                    if (is_array($data) && array_key_exists('headers', $data) && !is_null($data['headers'])) {
+                        $headers = $data['headers'];
+                    }
+
                     return ['headers' => array_merge(
-                        $eventData['headers'], $userAgentHeader)
+                        $headers, $userAgentHeader)
                     ];
                 }
             );
